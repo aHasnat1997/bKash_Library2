@@ -1,6 +1,6 @@
-require('dotenv').config();
 const express = require('express');
 const BKash = require('./bKash/main');
+require('dotenv').config();
 
 const app = express();
 const port = 3000;
@@ -10,7 +10,7 @@ const password = process.env.BKASH_PASSWORD;
 const appKey = process.env.BKASH_APPKEY;
 const appSecret = process.env.BKASH_APPSECRET;
 const callbackURL = 'http://localhost:3000/';
-const bKash = BKash(username, password, appKey, appSecret);
+const bKash = new BKash(username, password, appKey, appSecret);
 
 
 app.get('/', (req, res) => {
