@@ -1,4 +1,7 @@
 function Agreement(parent) {
+
+    // console.log(parent, 'agreement //3');
+
     async function create(data) {
         return await parent.req({
             url: '/checkout/create',

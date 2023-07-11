@@ -1,6 +1,6 @@
 function Transaction(parent) {
     async function query(trxID) {
-        return await parent.req({
+        return await this.parent.req({
             url: '/checkout/general/searchTransaction',
             data: { trxID }
         });

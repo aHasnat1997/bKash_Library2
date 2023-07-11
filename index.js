@@ -3,14 +3,14 @@ const BKash = require('./bKash/main');
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
-const username = process.env.BKASH_USERNAME;
-const password = process.env.BKASH_PASSWORD;
-const appKey = process.env.BKASH_APPKEY;
-const appSecret = process.env.BKASH_APPSECRET;
-const callbackURL = 'http://localhost:3000/';
-const bKash = new BKash(username, password, appKey, appSecret);
+const username = "sandboxTokenizedUser02";
+const password = "sandboxTokenizedUser02@12345";
+const appKey = "4f6o0cjiki2rfm34kfdadl1eqq";
+const appSecret = "2is7hdktrekvrbljjh44ll3d9l1dtjo4pasmjvs5vl5qr3fug4b";
+const callbackURL = 'http://localhost:5000/';
+const bKash = BKash({ username, password, appKey, appSecret });
 
 
 app.get('/', (req, res) => {
@@ -24,7 +24,7 @@ app.get('/agreement', async (req, res) => {
             payerReference: '01770618575',
             callbackURL: callbackURL + 'agreementCallback'
         });
-
+        console.log(agreement + ' ' + ' line index.js 27');
         return res.redirect(agreement?.bkashURL);
     } catch (err) {
         console.log(err);
@@ -72,9 +72,8 @@ app.get('/paymentCallback', async (req, res) => {
 
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
+    await bKash.init();
     console.log(`App listening on port ${port}`)
 })
-
-
 
