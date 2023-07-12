@@ -27,12 +27,13 @@ function BKash({ username, password, appKey, appSecret, isDev }) {
                 refreshToken = data.refresh_token;
                 idToken = data.id_token;
 
-                // console.log(idToken, 'main.js //32');
-                // console.log(this, '//31');
+                // console.log(idToken, '==================> main.js //32');
+                console.log(this, '=====================> main.js//31');
 
                 const agreement = Agreement(this);
 
-                // console.log(agreement.create, 'main.js //35');
+                console.log(agreement.create, '====================> main.js //35');
+                console.log(agreement.execute, '====================> main.js //36');
 
                 const payment = Payment(this);
 
@@ -50,19 +51,19 @@ function BKash({ username, password, appKey, appSecret, isDev }) {
         const point = URL + url;
 
         try {
-            let headers = {};
-            if (point.endsWith('grant') || point.endsWith('refresh')) {
-                headers = { username, password };
-            } else {
-                headers = { 'Authorization': idToken, 'X-app-key': appKey };
-            }
+            // let headers = {};
+            // if (point.endsWith('grant') || point.endsWith('refresh')) {
+            //     headers = { username, password };
+            // } else {
+            //     headers = { 'Authorization': idToken, 'X-app-key': appKey };
+            // }
 
-            // const headers = point.endsWith('grant') || point.endsWith('refresh') ? headers = { username, password } : headers = { 'Authorization': idToken, 'X-app-key': appKey };
+            let headers = point.endsWith('grant') || point.endsWith('refresh') ? { username, password } : { 'Authorization': idToken, 'X-app-key': appKey };
 
-            console.log(headers, 'main.js //58');
+            console.log(headers, '============================> main.js //58');
 
             const res = await axios.post(point, data, { headers });
-            // console.log(res.data, 'main.js //61');
+            // console.log(res.data, '=========================> main.js //61');
             return res.data;
         } catch (e) {
             console.log(e);

@@ -1,6 +1,6 @@
 function Agreement(parent) {
 
-    // console.log(parent, 'agreement //3');
+    // console.log(parent, '==========================> agreement.js //3');
 
     async function create(data) {
         return await parent.req({

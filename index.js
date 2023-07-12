@@ -19,12 +19,13 @@ app.get('/', (req, res) => {
 
 app.get('/agreement', async (req, res) => {
     try {
-        let agreement = await bKash.agreement?.create({
+        // console.log(bKash.init.agreement?.create, '===================> index.js //22');
+        let agreement = await bKash.init.agreement?.create({
             mode: '0000',
             payerReference: '01770618575',
             callbackURL: callbackURL + 'agreementCallback'
         });
-        console.log(agreement + ' ' + ' line index.js 27');
+        console.log(agreement + ' ' + ' ===========> index.js //27');
         return res.redirect(agreement?.bkashURL);
     } catch (err) {
         console.log(err);
